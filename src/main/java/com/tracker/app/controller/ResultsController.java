@@ -28,4 +28,16 @@ public class ResultsController {
 
         return "ReportedCases";
     }
+    
+    @GetMapping("/curedCases")
+    public String curedCases(Model model) {
+        List<ReportingLocationStatistics> allStats = coronaVirusDataService.getCuredStats();
+        int totalCuredCases = allStats.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
+        int totalNewCases = allStats.stream().mapToInt(stat -> stat.getDiffFromPrevDay()).sum();
+        model.addAttribute("locationStats", allStats);
+        model.addAttribute("totalCuredCases", totalCuredCases);
+        model.addAttribute("totalNewCases", totalNewCases);
+
+        return "CuredCases";
+    }
 }

@@ -51,6 +51,6 @@ public class ReportingLocationStatistics implements Comparable<ReportingLocation
 
 	@Override
 	public int compareTo(ReportingLocationStatistics o) {
-		return o.latestTotalCases - this.latestTotalCases;
+		return o.diffFromPrevDay - this.diffFromPrevDay;
 	}
 }
